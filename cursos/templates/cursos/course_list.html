@@ -1,0 +1,18 @@
+{% extends 'cursos/base.html' %}
+
+{% block content %}
+    <h2>Lista de Cursos</h2>
+    <ul class="list-group">
+        {% for course in courses %}
+            <li class="list-group-item">
+                <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay cursos disponibles.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block title %}
+Lista de cursos
+{% endblock %}

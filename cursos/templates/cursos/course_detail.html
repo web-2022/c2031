@@ -1,0 +1,15 @@
+{% extends 'cursos/base.html' %}
+
+{% block title %}
+Bienvenidos
+{% endblock %}
+
+{% block content %}
+    <h2>{{ course.name }}</h2>
+    <p><strong>Descripción:</strong> {{ course.description }}</p>
+    <p><strong>Fecha de Inicio:</strong> {{ course.start_date }}</p>
+    <a href="{% url 'course_list' %}">Volver a la lista de cursos</a>
+{% endblock %}
+
+
+

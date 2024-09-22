@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} | CCG</title>
+    {% comment %} Cargando archivos estaticos {% endcomment %}
+    {% load static %} 
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tu CSS adicional -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Academia de Minería</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">               
+                <li class="nav-item d-flex justify-content-between align-items-center " style="height: 100px;">
+                    <a class="nav-link" href="{% url 'course_list' %}">Cursos</a>
+                    <a href="{% url 'admin:index' %}">Ingresa</a>
+                   
+                </li>
+
+                
+                
+                <!-- Añade más enlaces según sea necesario -->
+            </ul>
+            
+        </div>
+    </nav>
+
+    <!-- Contenedor principal -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Panel de cursos -->
+            <div class="col-md-3">
+                <h4>Cursos</h4>
+                <ul class="list-group">
+                    {% for course in courses %}
+                        <li class="list-group-item">
+                            <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Contenido principal -->
+            <div class="col-md-9">
+                {% block content %}
+                <!-- Aquí se cargará el contenido específico de cada página -->
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
